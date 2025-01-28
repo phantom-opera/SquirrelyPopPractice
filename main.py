@@ -5,7 +5,7 @@ from sound import SoundManager
 from typing import Tuple, List
 from Menu import button
 from volumeslider import UI, Slider
-
+from bubble import Bubble
 
 class Main:
     def __init__(self, dims: Tuple[int, int]) -> None:
@@ -83,6 +83,8 @@ class Main:
             (self.width // 2, 500), (200, 30), self.settings["Volume"] / 100, 0, 100
         )
 
+        self.bubbles = [Bubble("Assets/UI/bubble.png", (0, 0)) for k in range(7)]
+
     def draw_text(self, text, font, color, surface, x, y):
             text_obj = UI.font.render(text, 1, color)
             text_rect = text_obj.get_rect()
@@ -94,7 +96,6 @@ class Main:
             self.sound_manager.music("load", "Assets/Sounds/MainMusic/TownTheme.mp3")
             self.sound_manager.music("play")
 
-         
             menu_state = "main"
 
             running = True
@@ -105,6 +106,10 @@ class Main:
                 self.screen.screen.fill((52, 78, 91))
 
                 self.screen.screen.blit(self.background_img, self.backgroundRect)
+
+                for bubble in self.bubbles:
+                    bubble.move()
+                    self.screen.screen.blit(bubble.sprite, (bubble.x, bubble.y))
 
                 if menu_state == "main":
                  self.screen.screen.blit(self.logo_img, self.logoRect)
