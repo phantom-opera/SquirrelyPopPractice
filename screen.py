@@ -16,8 +16,6 @@ class Screen:
         if e.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
-        if e.type == pygame.VIDEORESIZE:
-            self.toggle_fs()
 
 
 if __name__ == "__main__":

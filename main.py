@@ -6,6 +6,7 @@ from typing import Tuple, List
 from Menu import button
 from volumeslider import UI, Slider
 from bubble import Bubble
+from game import Game
 
 class Main:
     def __init__(self, dims: Tuple[int, int]) -> None:
@@ -103,8 +104,6 @@ class Main:
             while running:
                 mx, my = pygame.mouse.get_pos()
 
-                self.screen.screen.fill((52, 78, 91))
-
                 self.screen.screen.blit(self.background_img, self.backgroundRect)
 
                 for bubble in self.bubbles:
@@ -115,7 +114,11 @@ class Main:
                  self.screen.screen.blit(self.logo_img, self.logoRect)
 
                  if self.start_button.draw(self.screen.screen):
-                    pass
+                    running = False
+                    game = Game((self.width, self.height))  
+                    game.run()
+                    pygame.quit()
+                    sys.exit()
                  
                  if self.settings_button.draw(self.screen.screen):
                     menu_state = "settings"
