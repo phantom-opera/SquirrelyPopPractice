@@ -29,7 +29,7 @@ class LifeSprite(StaticSprite):
         self.top_bounds = top_bounds
         self.bottom_bounds = bottom_bounds
 
-        self.dy = r.randint(1, 2) * 0.6
+        self.dy = r.randint(1, 2)
 
         if r.random() >= 0.5:
             self.dy *= -1
